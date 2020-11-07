@@ -9,7 +9,7 @@ function closure(){
         OVERLAY_BACKGROUND_OPACITY:0.9,
         REDUCTION_COEFF: 0.9,
         CLASS_FOR_IMAGES: "img-zoom",
-        SECONDS_DELAY_FOR_LISTERNES: 3 //works if != 0 
+        SECONDS_DELAY_FOR_LISTERNES: 1 //works if != 0 
     }
 
     return {
@@ -64,7 +64,6 @@ function overlay(create){
         document.body.appendChild(divOverlay);
 
     } else if(create === false){
-
         const currentID = manager.currentID();
         const oldDiv = document.getElementById(currentID);
         //this also removes the event listener
@@ -98,7 +97,6 @@ function findHighestZIndex(){
  * @param {Object} referenceImage - DOM object
  */
 function imageZoomLogic(referenceImage){
-
     /**
      * Calculates the style for the zoomed image
      *  also takes care of positioning the photo on the screen
@@ -187,18 +185,19 @@ window.addEventListener('DOMContentLoaded', function() {
         const imagesToZoom = document.getElementsByClassName(classToUse);
         for (let i = 0; i < imagesToZoom.length; i++) {
             imagesToZoom[i].addEventListener("click", function(){
-                imageZoomLogic(imagesToZoom[i])
+                imageZoomLogic(imagesToZoom[i]);
             }); 
         }
     }
-    
+
+    const secondsDelay = manager.params().SECONDS_DELAY_FOR_LISTERNES;
     if(
-        typeof(manager.params().SECONDS_DELAY_FOR_LISTERNES) === "number" &&
-        manager.params().SECONDS_DELAY_FOR_LISTERNES > 0
+        typeof(secondsDelay) === "number" &&
+        secondsDelay > 0
     ){
-        setInterval(
+        setTimeout(
             loadListeners,
-            manager.params().SECONDS_DELAY_FOR_LISTERNES * 1000
+            secondsDelay * 1000
         );
     } else {
         loadListeners();
