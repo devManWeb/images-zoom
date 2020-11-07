@@ -8,7 +8,8 @@ function closure(){
         OVERLAY_BACKGROUND_COLOR: "lightgrey",
         OVERLAY_BACKGROUND_OPACITY:0.9,
         REDUCTION_COEFF: 0.9,
-        CLASS_FOR_IMAGES: "img-zoom"
+        CLASS_FOR_IMAGES: "img-zoom",
+        SECONDS_DELAY_FOR_LISTERNES: 3 //works if != 0 
     }
 
     return {
@@ -175,16 +176,32 @@ function imageZoomLogic(referenceImage){
     }
 }
 
-/**
- * Puts a listener for each image with the class specified in CONFIGURATION_PARAMS
- */
-window.addEventListener('load', function() {
-    const classToUse = manager.params().CLASS_FOR_IMAGES;
-    const imagesToZoom = document.getElementsByClassName(classToUse);
-    for (let i = 0; i < imagesToZoom.length; i++) {
-        imagesToZoom[i].addEventListener("click", function(){
-            imageZoomLogic(imagesToZoom[i])
-        }); 
-    } 
+
+window.addEventListener('DOMContentLoaded', function() {
+    
+    /**
+     * Puts a listener for each image with the class specified in CONFIGURATION_PARAMS
+     */
+    function loadListeners(){
+        const classToUse = manager.params().CLASS_FOR_IMAGES;
+        const imagesToZoom = document.getElementsByClassName(classToUse);
+        for (let i = 0; i < imagesToZoom.length; i++) {
+            imagesToZoom[i].addEventListener("click", function(){
+                imageZoomLogic(imagesToZoom[i])
+            }); 
+        }
+    }
+    
+    if(
+        typeof(manager.params().SECONDS_DELAY_FOR_LISTERNES) === "number" &&
+        manager.params().SECONDS_DELAY_FOR_LISTERNES > 0
+    ){
+        setInterval(
+            loadListeners,
+            manager.params().SECONDS_DELAY_FOR_LISTERNES * 1000
+        );
+    } else {
+        loadListeners();
+    }
 });
 
