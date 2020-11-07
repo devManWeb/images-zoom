@@ -9,7 +9,7 @@ function closure(){
         OVERLAY_BACKGROUND_OPACITY:0.9,
         REDUCTION_COEFF: 0.9,
         CLASS_FOR_IMAGES: "img-zoom",
-        SECONDS_DELAY_FOR_LISTERNES: 1 //works if > 0 
+        SECONDS_DELAY_FOR_LISTENERS: 1 //works if > 0 
     }
 
     return {
@@ -190,7 +190,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const secondsDelay = manager.params().SECONDS_DELAY_FOR_LISTERNES;
+    const secondsDelay = manager.params().SECONDS_DELAY_FOR_LISTENERS;
     if(
         typeof(secondsDelay) === "number" &&
         secondsDelay > 0
