@@ -178,7 +178,7 @@ function imageZoomLogic(referenceImage){
 /**
  * Puts a listener for each image with the class specified in CONFIGURATION_PARAMS
  */
-(function IIFE(){
+window.addEventListener('load', function() {
     const classToUse = manager.params().CLASS_FOR_IMAGES;
     const imagesToZoom = document.getElementsByClassName(classToUse);
     for (let i = 0; i < imagesToZoom.length; i++) {
@@ -186,5 +186,5 @@ function imageZoomLogic(referenceImage){
             imageZoomLogic(imagesToZoom[i])
         }); 
     } 
-}());
+});
 
