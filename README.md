@@ -9,4 +9,13 @@ The behavior of this script is customizable through these parameters:
 * CLASS_FOR_IMAGES: (default img-zoom, only one class)
 * SECONDS_DELAY_FOR_LISTENERS: (default 1s, there is no delay if it is equal to zero).
 
-This project released under the MIT license.
+## Npm commands
+
+To auto-compile JS files in the dist folder after each file saving, use:
+```
+npm run build
+```
+
+## License
+
+This project is released under the MIT license.

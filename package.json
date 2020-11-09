@@ -1,0 +1,14 @@
+{
+  "name": "images-zoom-main",
+  "version": "1.0.0",
+  "description": "A simple script to zoom images after user click.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc --watch & nodemon dist"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  }
+}
